@@ -1,100 +1,1120 @@
+
 <!DOCTYPE html>
-<html lang="pt"
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>StudyVault</title>
+    <title>StudyVault | O teu cofre académico</title>
 
-<style>body { 
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f4f6f8;
-    color: #222;
-}
-header {
-    background-color: #1e3a8a;
-    color: white;
-    padding: 25px;
-    text-allign: center;
-}
-header h1{
-    margin: 0;
-    font-size :36px:
-}
-header p {
-    margin-top: 8px;
-    font-size: 16px;
-}
-main {
-max-widht:900px;
-margin: 40px;
-padding: o 20px;
-}
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-.documento {
-    background-color: white;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 40px 12px rgba(0, 0, 0, 0.08);
-}
-.documento h3 {
-margin-top: 0;
-color: #1e3a8a
-}
-.documento p {
-    color: #555;
+    <style>
+        :root {
+            --azul: #0b1b3d;
+            --azul-claro: #142d61;
+            --dourado: #d4af37;
+            --fundo: #f4f6f9;
+            --branco: #ffffff;
+            --texto: #172033;
+            --cinzento: #667085;
+            --borda: #e4e7ec;
+        }
 
-}
-.botao {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 18px;
-    background-color: #1e3a8a;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-}
-.botao:hover {
-    background-color: #162d6b;
-}
-footer{
-    text-align: center;
-    padding: 25px;
-    margin-top: 50px;
-    background-color: #1e3a8a;
-    color: white
-}
-</style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
 
+        button, input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        header {
+            background: var(--azul);
+            color: var(--branco);
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 15px #0002;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .logo span,
+        .hero h1 span {
+            color: var(--dourado);
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: var(--branco);
+            font-size: 15px;
+        }
+
+        nav button:hover {
+            color: var(--dourado);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+            color: var(--branco);
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 43px);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #e5e8ef;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 28px auto 0;
+        }
+
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 14px 22px;
+            background: var(--dourado);
+            color: var(--azul);
+            border: none;
+            border-radius: 0 8px 8px 0;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: 45px auto;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .titulo h2,
+        .cabecalho-pagina h2 {
+            color: var(--azul);
+            margin-bottom: 8px;
+        }
+
+        .titulo p,
+        .cabecalho-pagina p {
+            color: var(--cinzento);
+        }
+
+        .estatisticas {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .estatistica {
+            background: var(--branco);
+            text-align: center;
+            padding: 22px 12px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px #0000000c;
+        }
+
+        .estatistica strong {
+            display: block;
+            font-size: 29px;
+            color: var(--dourado);
+        }
+
+        .estatistica span {
+            color: var(--cinzento);
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 26px;
+            box-shadow: 0 5px 20px #0000000c;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px #00000012;
+        }
+
+        .ano-card {
+            text-align: center;
+            cursor: pointer;
+            border-top: 4px solid var(--dourado);
+        }
+
+        .ano-card h2,
+        .ano-card h3,
+        .card h3 {
+            color: var(--azul);
+            margin-bottom: 8px;
+        }
+
+        .ano-card p,
+        .card p {
+            color: var(--cinzento);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 18px;
+            background: var(--azul);
+            color: var(--branco);
+            text-decoration: none;
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: var(--dourado);
+            color: var(--azul);
+        }
+
+        .btn-voltar {
+            background: transparent;
+            border: 1px solid var(--azul);
+            color: var(--azul);
+            padding: 9px 15px;
+            border-radius: 7px;
+            margin-bottom: 20px;
+        }
+
+        .btn-voltar:hover {
+            background: var(--azul);
+            color: var(--branco);
+        }
+
+        .pagina {
+            display: none;
+        }
+
+        .cabecalho-pagina {
+            margin-bottom: 28px;
+        }
+
+        .cadeira-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .cadeira-card h3 {
+            font-size: 18px;
+        }
+
+        .cadeira-card p {
+            font-size: 14px;
+        }
+
+        .materiais-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .categoria-material {
+            background: var(--branco);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #0000000c;
+        }
+
+        .categoria-material h3 {
+            color: var(--azul);
+            margin-bottom: 16px;
+        }
+
+        .material-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            border: 1px solid var(--borda);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .material-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .material-card h4 {
+            color: var(--texto);
+            overflow-wrap: anywhere;
+        }
+
+        .material-card p,
+        .em-breve {
+            color: var(--cinzento);
+            font-size: 14px;
+        }
+
+        .sobre {
+            background: var(--azul);
+            color: var(--branco);
+            text-align: center;
+            padding: 50px 7%;
+            margin-top: 65px;
+        }
+
+        .sobre h2 {
+            margin-bottom: 14px;
+        }
+
+        .sobre p {
+            max-width: 750px;
+            margin: auto;
+            color: #e5e8ef;
+        }
+
+        footer {
+            background: #071329;
+            color: #bfc5d1;
+            text-align: center;
+            padding: 22px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                padding: 16px 5%;
+            }
+
+            nav {
+                gap: 24px;
+            }
+
+            .hero {
+                padding: 48px 18px;
+            }
+
+            .search-box {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .search-box input,
+            .search-box button {
+                width: 100%;
+                border-radius: 7px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 30px auto;
+            }
+
+            .estatisticas {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .material-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .material-card .btn {
+                margin-top: 5px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <h1>StudyVault</h1>
-        <p>Documentos academicos num so lugar.</p>
-    </header>
-    <main>
-        <h2>Documentos disponiveis</h2>
-        <div class="documento">
-            <h3>Contabilidade Financeira I - Exame</h3>
-            <p>
-                Exame de contabilidade Financeira I.
-            </p>
-            <a
-            href="documento/Contabilidade20%financeira%20I%EXAME.pdf"
-            target="_blank"
-            class="botao">
-            Ver exame
-    </a>
+
+<header>
+    <div class="logo">Study<span>Vault</span></div>
+
+    <nav>
+        <button onclick="voltarInicio()">Início</button>
+        <button onclick="mostrarSobre()">Sobre</button>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Bem-vindo ao <span>StudyVault</span></h1>
+
+    <p>
+        O teu cofre académico: encontra exames, testes e outros
+        materiais de estudo organizados por ano, semestre e cadeira.
+    </p>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="campoPesquisa"
+            placeholder="Pesquisar uma cadeira..."
+            aria-label="Pesquisar uma cadeira"
+        >
+
+        <button onclick="pesquisar()">Pesquisar</button>
+    </div>
+</section>
+
+<!-- PÁGINA INICIAL: OS DOIS ANOS APARECEM APENAS AQUI -->
+
+<main id="inicio" class="container">
+    <div class="titulo">
+        <h2>Materiais académicos</h2>
+        <p>Escolhe o teu ano de estudo para começar.</p>
+    </div>
+
+    <div class="estatisticas">
+        <div class="estatistica">
+            <strong>20</strong>
+            <span>Cadeiras</span>
         </div>
-    </main>
-    <footer>
-        <p>2026 StudyVault - Todos os direitos Reservados.</p>
-    </footer>
+
+        <div class="estatistica">
+            <strong>4</strong>
+            <span>Semestres</span>
+        </div>
+
+        <div class="estatistica">
+            <strong>2</strong>
+            <span>Anos</span>
+        </div>
+
+        <div class="estatistica">
+            <strong>11</strong>
+            <span>Documentos disponíveis</span>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card ano-card" onclick="mostrar('ano1')">
+            <h2>1.º Ano</h2>
+            <p>1.º e 2.º semestre</p>
+            <button class="btn" type="button">Ver semestres</button>
+        </div>
+
+        <div class="card ano-card" onclick="mostrar('ano2')">
+            <h2>2.º Ano</h2>
+            <p>1.º e 2.º semestre</p>
+            <button class="btn" type="button">Ver semestres</button>
+        </div>
+    </div>
+</main>
+
+<!-- 1.º ANO: OS DOIS SEMESTRES -->
+
+<section id="ano1" class="container pagina">
+    <div class="cabecalho-pagina">
+        <button class="btn-voltar" onclick="voltarInicio()">← Voltar ao início</button>
+        <h2>1.º Ano</h2>
+        <p>Escolhe o semestre que pretendes consultar.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card ano-card" onclick="mostrar('ano1sem1')">
+            <h3>1.º Semestre</h3>
+            <p>5 cadeiras</p>
+            <button class="btn" type="button">Ver cadeiras</button>
+        </div>
+
+        <div class="card ano-card" onclick="mostrar('ano1sem2')">
+            <h3>2.º Semestre</h3>
+            <p>5 cadeiras</p>
+            <button class="btn" type="button">Ver cadeiras</button>
+        </div>
+    </div>
+</section>
+
+<!-- 1.º ANO — 1.º SEMESTRE -->
+
+<section id="ano1sem1" class="container pagina">
+    <div class="cabecalho-pagina">
+        <button class="btn-voltar" onclick="mostrar('ano1')">← Voltar aos semestres</button>
+        <h2>1.º Ano — 1.º Semestre</h2>
+        <p>Escolhe uma cadeira para consultar os materiais.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card cadeira-card">
+            <h3>Contabilidade Financeira I</h3>
+            <p>Exames e testes da cadeira.</p>
+            <button class="btn" onclick="abrirCadeira('cf1','ano1sem1')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Matemática I</h3>
+            <p>Testes e outros materiais de Matemática.</p>
+            <button class="btn" onclick="abrirCadeira('mat1','ano1sem1')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Técnicas de Expressão</h3>
+            <p>Materiais para apoiar o estudo.</p>
+            <button class="btn" onclick="abrirCadeira('te','ano1sem1')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Metodologia de Investigação Científica</h3>
+            <p>Exames e testes da cadeira.</p>
+            <button class="btn" onclick="abrirCadeira('mic','ano1sem1')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Habilidades de Vida</h3>
+            <p>Materiais disponíveis para estudo.</p>
+            <button class="btn" onclick="abrirCadeira('hv','ano1sem1')">Ver materiais</button>
+        </div>
+    </div>
+</section>
+
+<!-- 1.º ANO — 2.º SEMESTRE -->
+
+<section id="ano1sem2" class="container pagina">
+    <div class="cabecalho-pagina">
+        <button class="btn-voltar" onclick="mostrar('ano1')">← Voltar aos semestres</button>
+        <h2>1.º Ano — 2.º Semestre</h2>
+        <p>Escolhe uma cadeira para consultar os materiais.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card cadeira-card">
+            <h3>Matemática II</h3>
+            <p>Exames e outros materiais da cadeira.</p>
+            <button class="btn" onclick="abrirCadeira('mat2','ano1sem2')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Contabilidade Financeira II</h3>
+            <p>Exames e testes da cadeira.</p>
+            <button class="btn" onclick="abrirCadeira('cf2','ano1sem2')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Informática</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('info','ano1sem2')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Direito Comercial</h3>
+            <p>Testes e outros materiais da cadeira.</p>
+            <button class="btn" onclick="abrirCadeira('dc','ano1sem2')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Ética Geral</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('eg','ano1sem2')">Ver materiais</button>
+        </div>
+    </div>
+</section>
+
+<!-- 2.º ANO: OS DOIS SEMESTRES -->
+
+<section id="ano2" class="container pagina">
+    <div class="cabecalho-pagina">
+        <button class="btn-voltar" onclick="voltarInicio()">← Voltar ao início</button>
+        <h2>2.º Ano</h2>
+        <p>Escolhe o semestre que pretendes consultar.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card ano-card" onclick="mostrar('ano2sem1')">
+            <h3>1.º Semestre</h3>
+            <p>5 cadeiras</p>
+            <button class="btn" type="button">Ver cadeiras</button>
+        </div>
+
+        <div class="card ano-card" onclick="mostrar('ano2sem2')">
+            <h3>2.º Semestre</h3>
+            <p>5 cadeiras</p>
+            <button class="btn" type="button">Ver cadeiras</button>
+        </div>
+    </div>
+</section>
+
+<!-- 2.º ANO — 1.º SEMESTRE -->
+
+<section id="ano2sem1" class="container pagina">
+    <div class="cabecalho-pagina">
+        <button class="btn-voltar" onclick="mostrar('ano2')">← Voltar aos semestres</button>
+        <h2>2.º Ano — 1.º Semestre</h2>
+        <p>Escolhe uma cadeira para consultar os materiais.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card cadeira-card">
+            <h3>Inglês de Negócio</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('in','ano2sem1')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Teologia Católica</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('tc','ano2sem1')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Economia</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('eco','ano2sem1')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Cálculo Financeiro</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('calcf','ano2sem1')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Contabilidade Financeira III</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('cf3','ano2sem1')">Ver materiais</button>
+        </div>
+    </div>
+</section>
+
+<!-- 2.º ANO — 2.º SEMESTRE -->
+
+<section id="ano2sem2" class="container pagina">
+    <div class="cabecalho-pagina">
+        <button class="btn-voltar" onclick="mostrar('ano2')">← Voltar aos semestres</button>
+        <h2>2.º Ano — 2.º Semestre</h2>
+        <p>Escolhe uma cadeira para consultar os materiais.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card cadeira-card">
+            <h3>Contabilidade de Custos</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('cc','ano2sem2')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Contabilidade Financeira IV</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('cf4','ano2sem2')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Investigação Operacional</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('io','ano2sem2')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Estatística</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('est','ano2sem2')">Ver materiais</button>
+        </div>
+
+        <div class="card cadeira-card">
+            <h3>Consultoria Empresarial</h3>
+            <p>Materiais de apoio ao estudo.</p>
+            <button class="btn" onclick="abrirCadeira('ce','ano2sem2')">Ver materiais</button>
+        </div>
+    </div>
+</section>
+
+<!-- PÁGINA DE MATERIAIS -->
+
+<section id="materiais" class="container pagina">
+    <div class="cabecalho-pagina">
+        <button class="btn-voltar" onclick="voltarAnterior()">← Voltar às cadeiras</button>
+        <h2 id="tituloCadeira">Nome da cadeira</h2>
+        <p id="subtituloCadeira"></p>
+    </div>
+
+    <div class="materiais-container">
+        <div class="categoria-material">
+            <h3>📘 Exames</h3>
+            <div id="listaExames"></div>
+        </div>
+
+        <div class="categoria-material">
+            <h3>📝 Testes</h3>
+            <div id="listaTestes"></div>
+        </div>
+
+        <div class="categoria-material">
+            <h3>📚 Resumos</h3>
+            <div id="listaResumos"></div>
+        </div>
+
+        <div class="categoria-material">
+            <h3>✏️ Exercícios</h3>
+            <div id="listaExercicios"></div>
+        </div>
+
+        <div class="categoria-material">
+            <h3>📁 Outros materiais</h3>
+            <div id="listaOutros"></div>
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE -->
+
+<section id="sobre" class="sobre">
+    <h2>Sobre o StudyVault</h2>
+    <p>
+        O StudyVault é um projecto académico criado para facilitar
+        o acesso a exames, testes, resumos e outros materiais de estudo.
+        Procuramos melhorar continuamente a qualidade dos materiais
+        e criar valor para os estudantes.
+    </p>
+</section>
+
+<footer>
+    <p>© 2026 StudyVault — O teu cofre académico</p>
+</footer>
+
+<script>
+    /*
+      Os documentos devem estar dentro da pasta "documentos",
+      ao lado deste ficheiro index.html.
+    */
+
+    const cadeiras = {
+        cf1: {
+            nome: "Contabilidade Financeira I",
+            ano: "1.º Ano",
+            semestre: "1.º Semestre",
+            exames: [
+                {
+                    nome: "Exame de Contabilidade Financeira I",
+                    url: "documentos/Contabilidade%20financeira%20I%20EXAME.pdf"
+                }
+            ],
+            testes: [
+                {
+                    nome: "Teste 1 de Contabilidade Financeira I",
+                    url: "documentos/Contabilidade%20financeira%20I%20TESTE1.pdf"
+                }
+            ],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        mat1: {
+            nome: "Matemática I",
+            ano: "1.º Ano",
+            semestre: "1.º Semestre",
+            exames: [],
+            testes: [
+                {
+                    nome: "Teste 1 de Matemática I",
+                    url: "documentos/Matem%C3%A1tica%20I%20TESTE1.pdf"
+                }
+            ],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        te: {
+            nome: "Técnicas de Expressão",
+            ano: "1.º Ano",
+            semestre: "1.º Semestre",
+            exames: [],
+            testes: [
+                {
+                    nome: "Teste 2 de Técnicas de Expressão",
+                    url: "documentos/T%C3%A9cnicas%20de%20express%C3%A3o%20TESTE2.pdf"
+                }
+            ],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        mic: {
+            nome: "Metodologia de Investigação Científica",
+            ano: "1.º Ano",
+            semestre: "1.º Semestre",
+            exames: [
+                {
+                    nome: "Exame de Metodologia de Investigação Científica",
+                    url: "documentos/MIC%20EXAME.pdf"
+                }
+            ],
+            testes: [
+                {
+                    nome: "Teste 2 de Metodologia de Investigação Científica",
+                    url: "documentos/MIC%20TESTE2.pdf"
+                }
+            ],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        hv: {
+            nome: "Habilidades de Vida",
+            ano: "1.º Ano",
+            semestre: "1.º Semestre",
+            exames: [
+                {
+                    nome: "Exame de Habilidades de Vida",
+                    url: "documentos/Habilidades%20de%20vida%20EXAME.pdf"
+                }
+            ],
+            testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        mat2: {
+            nome: "Matemática II",
+            ano: "1.º Ano",
+            semestre: "2.º Semestre",
+            exames: [
+                {
+                    nome: "Exame de Matemática II",
+                    url: "documentos/Matem%C3%A1tica%20II%20EXAME%20V.B.pdf"
+                }
+            ],
+            testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        cf2: {
+            nome: "Contabilidade Financeira II",
+            ano: "1.º Ano",
+            semestre: "2.º Semestre",
+            exames: [
+                {
+                    nome: "Exame de Contabilidade Financeira II",
+                    url: "documentos/Contabilidade%20financeira%20II%20EXAME.pdf"
+                }
+            ],
+            testes: [
+                {
+                    nome: "Teste 2 de Contabilidade Financeira II",
+                    url: "documentos/Contabilidade%20financeira%20II%20TESTE2.pdf"
+                }
+            ],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        info: {
+            nome: "Informática",
+            ano: "1.º Ano",
+            semestre: "2.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        dc: {
+            nome: "Direito Comercial",
+            ano: "1.º Ano",
+            semestre: "2.º Semestre",
+            exames: [],
+            testes: [
+                {
+                    nome: "Teste 1 de Direito Comercial",
+                    url: "documentos/Direito%20Comercial%20TESTE1.pdf"
+                }
+            ],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        eg: {
+            nome: "Ética Geral",
+            ano: "1.º Ano",
+            semestre: "2.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        in: {
+            nome: "Inglês de Negócio",
+            ano: "2.º Ano",
+            semestre: "1.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        tc: {
+            nome: "Teologia Católica",
+            ano: "2.º Ano",
+            semestre: "1.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        eco: {
+            nome: "Economia",
+            ano: "2.º Ano",
+            semestre: "1.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        calcf: {
+            nome: "Cálculo Financeiro",
+            ano: "2.º Ano",
+            semestre: "1.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        cf3: {
+            nome: "Contabilidade Financeira III",
+            ano: "2.º Ano",
+            semestre: "1.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        cc: {
+            nome: "Contabilidade de Custos",
+            ano: "2.º Ano",
+            semestre: "2.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        cf4: {
+            nome: "Contabilidade Financeira IV",
+            ano: "2.º Ano",
+            semestre: "2.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        io: {
+            nome: "Investigação Operacional",
+            ano: "2.º Ano",
+            semestre: "2.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        est: {
+            nome: "Estatística",
+            ano: "2.º Ano",
+            semestre: "2.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        },
+
+        ce: {
+            nome: "Consultoria Empresarial",
+            ano: "2.º Ano",
+            semestre: "2.º Semestre",
+            exames: [], testes: [],
+            resumos: [], exercicios: [], outros: []
+        }
+    };
+
+    let paginaAnterior = "inicio";
+
+    // Esconde todas as páginas internas.
+    function esconderPaginas() {
+        document.querySelectorAll(".pagina").forEach(function(pagina) {
+            pagina.style.display = "none";
+        });
+
+        document.getElementById("materiais").style.display = "none";
+    }
+
+    // Mostra uma página específica.
+    function mostrar(id) {
+        esconderPaginas();
+
+        document.getElementById("inicio").style.display = "none";
+
+        const pagina = document.getElementById(id);
+
+        if (pagina) {
+            pagina.style.display = "block";
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Volta à página inicial.
+    function voltarInicio() {
+        esconderPaginas();
+
+        document.getElementById("inicio").style.display = "block";
+        paginaAnterior = "inicio";
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Abre a página dos materiais da cadeira seleccionada.
+    function abrirCadeira(id, origem) {
+        const cadeira = cadeiras[id];
+
+        if (!cadeira) {
+            alert("Não foi possível encontrar esta cadeira.");
+            return;
+        }
+
+        paginaAnterior = origem || "inicio";
+
+        document.getElementById("inicio").style.display = "none";
+        esconderPaginas();
+
+        document.getElementById("tituloCadeira").textContent = cadeira.nome;
+        document.getElementById("subtituloCadeira").textContent =
+            cadeira.ano + " • " + cadeira.semestre;
+
+        preencherMateriais("listaExames", cadeira.exames);
+        preencherMateriais("listaTestes", cadeira.testes);
+        preencherMateriais("listaResumos", cadeira.resumos);
+        preencherMateriais("listaExercicios", cadeira.exercicios);
+        preencherMateriais("listaOutros", cadeira.outros);
+
+        document.getElementById("materiais").style.display = "block";
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Preenche cada categoria de materiais.
+    function preencherMateriais(id, materiais) {
+        const elemento = document.getElementById(id);
+        elemento.innerHTML = "";
+
+        if (!materiais || materiais.length === 0) {
+            const mensagem = document.createElement("p");
+            mensagem.className = "em-breve";
+            mensagem.textContent = "Ainda não existem materiais disponíveis nesta categoria.";
+            elemento.appendChild(mensagem);
+            return;
+        }
+
+        materiais.forEach(function(material) {
+            const cartao = document.createElement("div");
+            cartao.className = "material-card";
+
+            const informacao = document.createElement("div");
+
+            const titulo = document.createElement("h4");
+            titulo.textContent = material.nome;
+
+            const descricao = document.createElement("p");
+            descricao.textContent = "Documento disponível em PDF.";
+
+            informacao.appendChild(titulo);
+            informacao.appendChild(descricao);
+
+            const link = document.createElement("a");
+            link.className = "btn";
+            link.href = material.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "Abrir PDF";
+
+            cartao.appendChild(informacao);
+            cartao.appendChild(link);
+            elemento.appendChild(cartao);
+        });
+    }
+
+    // Volta da página de materiais para a página anterior.
+    function voltarAnterior() {
+        if (paginaAnterior === "inicio") {
+            voltarInicio();
+        } else {
+            mostrar(paginaAnterior);
+        }
+    }
+
+    // Pesquisa uma cadeira pelo nome.
+    function pesquisar() {
+        const campo = document.getElementById("campoPesquisa");
+        const termo = campo.value.trim().toLocaleLowerCase("pt");
+
+        if (!termo) {
+            alert("Escreve o nome de uma cadeira para pesquisar.");
+            campo.focus();
+            return;
+        }
+
+        const resultado = Object.entries(cadeiras).find(function(entrada) {
+            return entrada[1].nome.toLocaleLowerCase("pt").includes(termo);
+        });
+
+        if (!resultado) {
+            alert("Não foi encontrada nenhuma cadeira com esse nome.");
+            return;
+        }
+
+        abrirCadeira(resultado[0], "inicio");
+    }
+
+    // Permite pesquisar ao pressionar Enter.
+    document.getElementById("campoPesquisa").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            pesquisar();
+        }
+    });
+
+    // Desloca a página até à secção Sobre.
+    function mostrarSobre() {
+        document.getElementById("sobre").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
+    // Garante que a página inicial é a primeira a aparecer.
+    voltarInicio();
+</script>
+
 </body>
 </html>
